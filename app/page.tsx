@@ -1,213 +1,143 @@
-import {
-  Activity,
-  BadgeCheck,
-  BarChart3,
-  CreditCard,
-  Gauge,
-  LockKeyhole,
-  QrCode,
-  RadioTower,
-  ShieldCheck,
-  Smartphone,
-  Ticket,
-  WalletCards,
-  Zap
-} from 'lucide-react';
+import { BarChart3, CalendarDays, ChevronRight, CircleDollarSign, CreditCard, LockKeyhole, Monitor, QrCode, Radio, ShieldCheck, Smartphone, WalletCards, Wifi } from 'lucide-react';
+
+const navItems = ['Home', 'How It Works', 'Features', 'Use Cases', 'POS & Wristbands', 'Dashboard', 'Pricing'];
 
 const features = [
-  { icon: WalletCards, title: 'Wristband Wallets', text: 'Issue NFC wristbands linked to secure guest balances for fast tap-to-pay purchases.' },
-  { icon: QrCode, title: 'QR Payments', text: 'Use QR wallets as a flexible alternative for attendees, students, vendors, or guests.' },
-  { icon: CreditCard, title: 'Fast POS Checkout', text: 'A clean cashier screen built for concessions, food stands, merchandise, and event sales.' },
-  { icon: RadioTower, title: 'Live Terminal Monitoring', text: 'See which stations are active, idle, offline, or require attention in real time.' },
-  { icon: BarChart3, title: 'Sales Dashboard', text: 'Track transactions, average sale, top stations, wallet loads, refunds, and activity.' },
-  { icon: ShieldCheck, title: 'Admin Controls', text: 'Role-based access, user management, audit-friendly records, and secure operations.' }
+  { icon: Radio, title: 'Cashless Wristbands', text: 'Fast tap payments with NFC wristbands.' },
+  { icon: QrCode, title: 'QR Wallet Payments', text: 'QR codes act as digital wallets for quick scan-to-pay.' },
+  { icon: Smartphone, title: 'POS Terminal', text: 'Intuitive POS for fast transactions and happier guests.' },
+  { icon: Monitor, title: 'Real-Time Monitoring', text: 'Monitor every terminal and station in real time.' },
+  { icon: WalletCards, title: 'Wallet Management', text: 'Load funds, check balances, and view transaction history.' },
+  { icon: ShieldCheck, title: 'Admin Controls', text: 'Manage users, roles, terminals, stations, and permissions.' },
+  { icon: BarChart3, title: 'Reporting Dashboard', text: 'Detailed reports on sales, stations, products, and performance.' },
+  { icon: LockKeyhole, title: 'Secure Access', text: 'Role-based access with full activity tracking.' }
 ];
 
-const useCases = ['Festivals', 'Schools', 'Church retreats', 'City events', 'Venues', 'Corporate events'];
-
-const statuses = [
-  { label: 'North Concession', terminal: 'TERM-01', status: 'Active', value: '$3,840', tx: '186' },
-  { label: 'Food Court', terminal: 'TERM-04', status: 'Idle', value: '$1,290', tx: '74' },
-  { label: 'Merch Stand', terminal: 'TERM-07', status: 'Warning', value: '$940', tx: '48' },
-  { label: 'East Gate', terminal: 'TERM-09', status: 'Offline', value: '$0', tx: '0' }
+const useCases = [
+  { title: 'Festivals & Events', className: 'festival' },
+  { title: 'Schools', className: 'school' },
+  { title: 'Churches & Retreats', className: 'church' },
+  { title: 'Stadiums & Venues', className: 'stadium' },
+  { title: 'Corporate Events', className: 'corporate' },
+  { title: 'Municipal Events', className: 'city' }
 ];
 
 export default function Home() {
   return (
     <main>
-      <nav className="nav">
-        <a className="brand" href="#top" aria-label="TapOne home">
-          <span className="brandMark">T1</span>
-          <span>TapOne</span>
+      <nav className="topNav">
+        <a className="logo" href="#top" aria-label="TapOne home">
+          <span className="logoIcon"><Wifi size={28} /></span>
+          <span><strong>TapOne</strong><small>Tap. Pay. Enjoy.</small></span>
         </a>
-        <div className="navLinks">
-          <a href="#how">How it works</a>
-          <a href="#features">Features</a>
-          <a href="#monitor">Dashboard</a>
-          <a href="#contact">Contact</a>
+        <div className="navMenu">
+          {navItems.map((item) => <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-').replaceAll('&', 'and')}`}>{item}</a>)}
         </div>
-        <a className="navCta" href="mailto:demo@txtapone.com">Request demo</a>
+        <a className="demoBtn" href="mailto:demo@txtapone.com">Request a Demo</a>
       </nav>
 
       <section className="hero" id="top">
-        <div className="heroGlow heroGlowOne" />
-        <div className="heroGlow heroGlowTwo" />
-        <div className="heroContent">
-          <div className="eyebrow"><Zap size={16} /> Cashless payments for modern events</div>
-          <h1>The smart way to run cashless events.</h1>
-          <p className="heroText">
-            TapOne helps organizations manage wristband payments, QR wallets, POS sales, and real-time terminal monitoring from one secure platform.
-          </p>
+        <div className="heroCopy">
+          <div className="eyebrow"><span /> Cashless payments made simple</div>
+          <h1>The smart way to run <em>cashless</em> events.</h1>
+          <p>TapOne helps organizations manage wristband payments, QR wallets, concession sales, and real-time terminal monitoring from one secure platform.</p>
           <div className="heroActions">
-            <a className="button primary" href="mailto:demo@txtapone.com">Request a Demo</a>
-            <a className="button secondary" href="#how">See how it works</a>
+            <a className="primaryBtn" href="mailto:demo@txtapone.com">Request a Demo <ChevronRight size={18} /></a>
+            <a className="outlineBtn" href="#how-it-works">See How It Works <span>▶</span></a>
           </div>
-          <div className="trustRow">
-            <span><BadgeCheck size={18} /> Fast lines</span>
-            <span><BadgeCheck size={18} /> Less cash handling</span>
-            <span><BadgeCheck size={18} /> Real-time control</span>
+          <div className="quickCards">
+            <div><Radio size={24} /> Wristband<br />Payments</div>
+            <div><QrCode size={24} /> QR<br />Wallets</div>
+            <div><BarChart3 size={24} /> Real-Time<br />Sales</div>
+            <div><Monitor size={24} /> Admin<br />Dashboard</div>
+            <div><Smartphone size={24} /> POS<br />Terminals</div>
           </div>
         </div>
 
-        <div className="heroVisual" aria-label="TapOne dashboard mockup">
-          <div className="phoneCard floating">
-            <div className="phoneTop" />
-            <QrCode size={88} />
-            <p>Guest Wallet</p>
-            <strong>$48.75</strong>
+        <div className="heroDevices" aria-label="TapOne product mockup">
+          <div className="wristband"><span>TapOne</span><i /></div>
+          <div className="phone walletPhone">
+            <div className="notch" />
+            <b>My Wallet</b>
+            <div className="balance"><small>Balance</small><strong>$85.50</strong></div>
+            <div className="qrMock"><QrCode size={76} /></div>
+            <small>Tap or scan to pay</small>
+            <button>Add Funds</button>
           </div>
-          <div className="dashboardCard">
-            <div className="dashboardHeader">
-              <div>
-                <span className="smallLabel">Live Sales</span>
-                <h3>$12,480.50</h3>
-              </div>
-              <span className="livePill"><Activity size={14} /> Live</span>
-            </div>
-            <div className="metricGrid">
-              <div><span>Transactions</span><strong>842</strong></div>
-              <div><span>Avg Sale</span><strong>$14.82</strong></div>
-              <div><span>Active Terms</span><strong>18</strong></div>
-              <div><span>Wallet Loads</span><strong>$25.2k</strong></div>
-            </div>
-            <div className="chartMock">
-              <span style={{height: '35%'}} />
-              <span style={{height: '58%'}} />
-              <span style={{height: '44%'}} />
-              <span style={{height: '76%'}} />
-              <span style={{height: '68%'}} />
-              <span style={{height: '92%'}} />
-              <span style={{height: '72%'}} />
+          <div className="laptop">
+            <div className="screenTop"><b>TapOne</b><span>Today, May 20</span></div>
+            <div className="dashLayout">
+              <aside>
+                {['Dashboard', 'Transactions', 'Terminals', 'Stations', 'Users', 'Reports', 'Products', 'Settings'].map(x => <i key={x}>{x}</i>)}
+              </aside>
+              <section>
+                <h4>Dashboard</h4>
+                <div className="kpis"><div><small>Total Sales</small><b>$12,456.75</b></div><div><small>Transactions</small><b>1,258</b></div><div><small>Active Terminals</small><b>18</b></div></div>
+                <div className="charts"><div className="lineChart"><span /></div><div className="donut" /></div>
+              </section>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="problem">
-        <div>
-          <span className="sectionTag">The problem</span>
-          <h2>Cash slows everything down.</h2>
-        </div>
-        <p>
-          Long lines, manual reconciliation, lost tickets, unclear balances, and no real-time visibility make event operations harder than they need to be. TapOne turns payments into a fast digital experience.
-        </p>
-      </section>
-
-      <section className="how" id="how">
-        <span className="sectionTag">How it works</span>
-        <h2>Simple for guests. Powerful for organizers.</h2>
-        <div className="steps">
-          <div className="step"><span>01</span><h3>Load Funds</h3><p>Guests receive a wristband or QR wallet linked to a secure balance.</p></div>
-          <div className="step"><span>02</span><h3>Tap or Scan</h3><p>Cashiers scan the QR code or tap the wristband to complete the sale.</p></div>
-          <div className="step"><span>03</span><h3>Monitor Live</h3><p>Admins see stations, terminals, sales, balances, and activity in real time.</p></div>
-        </div>
-      </section>
-
-      <section className="features" id="features">
-        <div className="sectionHeader">
-          <span className="sectionTag">Platform</span>
-          <h2>Everything needed to run a cashless event.</h2>
-        </div>
-        <div className="featureGrid">
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <article className="featureCard" key={feature.title}>
-                <div className="iconBubble"><Icon size={24} /></div>
-                <h3>{feature.title}</h3>
-                <p>{feature.text}</p>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="posSection">
-        <div className="posMock">
-          <div className="posHeader"><Smartphone size={20} /> TapOne POS</div>
-          <div className="productGrid">
-            {['Tacos', 'Burger', 'Water', 'Soda', 'Nachos', 'Shirt'].map((item, idx) => <button key={item}>{item}<span>${[8,11,3,4,7,25][idx]}</span></button>)}
-          </div>
-          <div className="cartMock">
-            <div><span>2 × Tacos</span><strong>$16.00</strong></div>
-            <div><span>1 × Water</span><strong>$3.00</strong></div>
-            <div className="total"><span>Total</span><strong>$19.00</strong></div>
-            <button className="payButton">Tap wristband or scan QR</button>
+          <div className="posTerminal">
+            <small>New Sale</small>
+            <strong>$6.75</strong>
+            <p>Present Wristband<br />or Scan QR Code</p>
+            <div className="posIcons"><Radio size={36} /><QrCode size={50} /></div>
+            <b>TapOne</b>
           </div>
         </div>
-        <div>
-          <span className="sectionTag">POS checkout</span>
-          <h2>A point of sale built for speed.</h2>
-          <p>Large product buttons, fast cart handling, balance validation, cashier sessions, and clear confirmations help staff move lines quickly with less training.</p>
+      </section>
+
+      <section className="how" id="how-it-works">
+        <div className="sectionTitle centered"><h2>How <span>TapOne</span> Works</h2><p>Simple for guests. Powerful for organizers.</p></div>
+        <div className="stepsRow">
+          <div className="stepIcon"><WalletCards size={28} /></div>
+          <article><b>1. Load Funds</b><p>Guests, students, or attendees receive a wristband or QR wallet linked to their account balance.</p></article>
+          <div className="arrow">→</div>
+          <div className="stepIcon"><Radio size={28} /></div>
+          <article><b>2. Tap or Scan</b><p>At the concession stand, the cashier scans the QR code or taps the wristband to complete the purchase.</p></article>
+          <div className="arrow">→</div>
+          <div className="stepIcon"><BarChart3 size={28} /></div>
+          <article><b>3. Monitor Everything</b><p>Admins see transactions, terminal activity, wallet balances, sales, and station performance in real time.</p></article>
+          <div className="secureCard"><LockKeyhole size={48} /><div><b>Secure. Reliable. Trusted.</b><p>Built with security and control at the core.</p></div></div>
         </div>
       </section>
 
-      <section className="monitor" id="monitor">
-        <div className="sectionHeader centered">
-          <span className="sectionTag">Operations command center</span>
-          <h2>Monitor every stand and terminal live.</h2>
-          <p>Know what is online, what is selling, and what needs attention before it becomes a problem.</p>
+      <section className="featuresDashboard" id="features">
+        <div className="featureBlock">
+          <div className="sectionTitle"><h2>Powerful <span>Features</span></h2><p>Everything you need to run smooth, cashless events.</p></div>
+          <div className="featureGrid">
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              return <article className="featureCard" key={feature.title}><Icon size={30} /><div><b>{feature.title}</b><p>{feature.text}</p></div></article>;
+            })}
+          </div>
         </div>
-        <div className="terminalGrid">
-          {statuses.map((item) => (
-            <article className={`terminalCard ${item.status.toLowerCase()}`} key={item.terminal}>
-              <div className="terminalTop">
-                <Gauge size={21} />
-                <span>{item.status}</span>
-              </div>
-              <h3>{item.label}</h3>
-              <p>{item.terminal}</p>
-              <div className="terminalStats"><strong>{item.value}</strong><span>{item.tx} tx</span></div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="useCases">
-        <span className="sectionTag">Use cases</span>
-        <h2>Made for high-volume event environments.</h2>
-        <div className="chips">
-          {useCases.map((item) => <span key={item}>{item}</span>)}
+        <div className="dashboardBlock" id="dashboard">
+          <div className="sectionTitle"><h2>Real-Time <span>Dashboard</span></h2><p>Know what is happening at every station.</p></div>
+          <div className="whiteDashboard">
+            <aside><b>TapOne</b>{['Dashboard', 'Transactions', 'Terminals', 'Stations', 'Users', 'Reports', 'Products', 'Settings'].map(x => <i key={x}>{x}</i>)}</aside>
+            <section>
+              <div className="whiteKpis"><div><small>Total Sales</small><b>$12,456.75</b></div><div><small>Transactions</small><b>1,258</b></div><div><small>Active Terminals</small><b>18</b></div><div><small>Wallets Loaded</small><b>$8,430.00</b></div></div>
+              <div className="statusPanel"><b>Terminal Status</b><div><span className="ok">9<br /><small>Active</small></span><span className="idle">6<br /><small>Idle</small></span><span className="warn">2<br /><small>Warning</small></span><span className="off">1<br /><small>Offline</small></span></div></div>
+              <div className="salesPanel"><b>Sales Over Time</b><div className="miniLine" /></div>
+            </section>
+          </div>
         </div>
       </section>
 
-      <section className="security">
-        <div className="securityIcon"><LockKeyhole size={34} /></div>
-        <h2>Built with control and accountability.</h2>
-        <p>Role-based access, user authentication, transaction history, wallet validation, locked account support, and audit-friendly records.</p>
+      <section className="useCases" id="use-cases">
+        <div className="sectionTitle centered"><h2>Built for <span>Every Environment</span></h2></div>
+        <div className="useCaseGrid">
+          {useCases.map(x => <article className={x.className} key={x.title}><span>{x.title}</span></article>)}
+        </div>
       </section>
 
-      <section className="cta" id="contact">
-        <Ticket size={38} />
-        <h2>Ready to modernize your event payments?</h2>
-        <p>Launch a faster, cleaner, cashless payment experience with TapOne.</p>
-        <a className="button primary" href="mailto:demo@txtapone.com">Request a Demo</a>
+      <section className="bottomCta">
+        <div className="ctaIcon"><CalendarDays size={30} /></div>
+        <div><h2>Ready to modernize your event payments?</h2><p>Launch a faster, cleaner, cashless payment experience with TapOne.</p></div>
+        <a className="primaryBtn" href="mailto:demo@txtapone.com">Request a Demo</a>
+        <a className="outlineBtn" href="mailto:demo@txtapone.com">Contact Us</a>
       </section>
-
-      <footer>
-        <div className="brand"><span className="brandMark">T1</span><span>TapOne</span></div>
-        <p>Tap. Pay. Enjoy.</p>
-      </footer>
     </main>
   );
 }
