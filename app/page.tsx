@@ -1,4 +1,16 @@
-import { BarChart3, CalendarDays, ChevronRight, CircleDollarSign, CreditCard, LockKeyhole, Monitor, QrCode, Radio, ShieldCheck, Smartphone, WalletCards, Wifi } from 'lucide-react';
+import {
+  BarChart3,
+  CalendarDays,
+  ChevronRight,
+  LockKeyhole,
+  Monitor,
+  QrCode,
+  Radio,
+  ShieldCheck,
+  Smartphone,
+  WalletCards,
+  Wifi
+} from 'lucide-react';
 
 const navItems = ['Home', 'How It Works', 'Features', 'Use Cases', 'POS & Wristbands', 'Dashboard', 'Pricing'];
 
@@ -24,27 +36,38 @@ const useCases = [
 
 export default function Home() {
   return (
-    <main>
+    <main id="top">
       <nav className="topNav">
         <a className="logo" href="#top" aria-label="TapOne home">
           <span className="logoIcon"><Wifi size={28} /></span>
           <span><strong>TapOne</strong><small>Tap. Pay. Enjoy.</small></span>
         </a>
+
         <div className="navMenu">
-          {navItems.map((item) => <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-').replaceAll('&', 'and')}`}>{item}</a>)}
+          {navItems.map((item) => (
+            <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-').replaceAll('&', 'and')}`}>
+              {item}
+            </a>
+          ))}
         </div>
+
         <a className="demoBtn" href="mailto:demo@txtapone.com">Request a Demo</a>
       </nav>
 
-      <section className="hero" id="top">
+      <section className="hero">
         <div className="heroCopy">
           <div className="eyebrow"><span /> Cashless payments made simple</div>
           <h1>The smart way to run <em>cashless</em> events.</h1>
-          <p>TapOne helps organizations manage wristband payments, QR wallets, concession sales, and real-time terminal monitoring from one secure platform.</p>
+          <p>
+            TapOne helps organizations manage wristband payments, QR wallets, concession sales,
+            and real-time terminal monitoring from one secure platform.
+          </p>
+
           <div className="heroActions">
             <a className="primaryBtn" href="mailto:demo@txtapone.com">Request a Demo <ChevronRight size={18} /></a>
             <a className="outlineBtn" href="#how-it-works">See How It Works <span>▶</span></a>
           </div>
+
           <div className="quickCards">
             <div><Radio size={24} /> Wristband<br />Payments</div>
             <div><QrCode size={24} /> QR<br />Wallets</div>
@@ -54,41 +77,21 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="heroDevices" aria-label="TapOne product mockup">
-          <div className="wristband"><span>TapOne</span><i /></div>
-          <div className="phone walletPhone">
-            <div className="notch" />
-            <b>My Wallet</b>
-            <div className="balance"><small>Balance</small><strong>$85.50</strong></div>
-            <div className="qrMock"><QrCode size={76} /></div>
-            <small>Tap or scan to pay</small>
-            <button>Add Funds</button>
-          </div>
-          <div className="laptop">
-            <div className="screenTop"><b>TapOne</b><span>Today, May 20</span></div>
-            <div className="dashLayout">
-              <aside>
-                {['Dashboard', 'Transactions', 'Terminals', 'Stations', 'Users', 'Reports', 'Products', 'Settings'].map(x => <i key={x}>{x}</i>)}
-              </aside>
-              <section>
-                <h4>Dashboard</h4>
-                <div className="kpis"><div><small>Total Sales</small><b>$12,456.75</b></div><div><small>Transactions</small><b>1,258</b></div><div><small>Active Terminals</small><b>18</b></div></div>
-                <div className="charts"><div className="lineChart"><span /></div><div className="donut" /></div>
-              </section>
-            </div>
-          </div>
-          <div className="posTerminal">
-            <small>New Sale</small>
-            <strong>$6.75</strong>
-            <p>Present Wristband<br />or Scan QR Code</p>
-            <div className="posIcons"><Radio size={36} /><QrCode size={50} /></div>
-            <b>TapOne</b>
-          </div>
+        <div className="heroImageWrap" aria-label="TapOne product mockup">
+          <img
+            src="/images/tapone-devices.png"
+            alt="TapOne wristband wallet dashboard and POS terminal mockup"
+            className="heroImage"
+          />
         </div>
       </section>
 
       <section className="how" id="how-it-works">
-        <div className="sectionTitle centered"><h2>How <span>TapOne</span> Works</h2><p>Simple for guests. Powerful for organizers.</p></div>
+        <div className="sectionTitle centered">
+          <h2>How <span>TapOne</span> Works</h2>
+          <p>Simple for guests. Powerful for organizers.</p>
+        </div>
+
         <div className="stepsRow">
           <div className="stepIcon"><WalletCards size={28} /></div>
           <article><b>1. Load Funds</b><p>Guests, students, or attendees receive a wristband or QR wallet linked to their account balance.</p></article>
@@ -108,16 +111,27 @@ export default function Home() {
           <div className="featureGrid">
             {features.map((feature) => {
               const Icon = feature.icon;
-              return <article className="featureCard" key={feature.title}><Icon size={30} /><div><b>{feature.title}</b><p>{feature.text}</p></div></article>;
+              return (
+                <article className="featureCard" key={feature.title}>
+                  <Icon size={30} />
+                  <div><b>{feature.title}</b><p>{feature.text}</p></div>
+                </article>
+              );
             })}
           </div>
         </div>
+
         <div className="dashboardBlock" id="dashboard">
           <div className="sectionTitle"><h2>Real-Time <span>Dashboard</span></h2><p>Know what is happening at every station.</p></div>
           <div className="whiteDashboard">
             <aside><b>TapOne</b>{['Dashboard', 'Transactions', 'Terminals', 'Stations', 'Users', 'Reports', 'Products', 'Settings'].map(x => <i key={x}>{x}</i>)}</aside>
             <section>
-              <div className="whiteKpis"><div><small>Total Sales</small><b>$12,456.75</b></div><div><small>Transactions</small><b>1,258</b></div><div><small>Active Terminals</small><b>18</b></div><div><small>Wallets Loaded</small><b>$8,430.00</b></div></div>
+              <div className="whiteKpis">
+                <div><small>Total Sales</small><b>$12,456.75</b></div>
+                <div><small>Transactions</small><b>1,258</b></div>
+                <div><small>Active Terminals</small><b>18</b></div>
+                <div><small>Wallets Loaded</small><b>$8,430.00</b></div>
+              </div>
               <div className="statusPanel"><b>Terminal Status</b><div><span className="ok">9<br /><small>Active</small></span><span className="idle">6<br /><small>Idle</small></span><span className="warn">2<br /><small>Warning</small></span><span className="off">1<br /><small>Offline</small></span></div></div>
               <div className="salesPanel"><b>Sales Over Time</b><div className="miniLine" /></div>
             </section>
